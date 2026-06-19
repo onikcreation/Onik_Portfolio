@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="glass">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Al Amin Onik – ERP & Web Management Professional | Portfolio" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Al Amin Onik – Portfolio" />
+  <meta property="og:description" content="ERP & Web Management Professional | Assistant Manager at Udvash" />
+  <meta property="og:image" content="assets/profile.jpg" />
+  <meta property="og:type" content="profile" />
+
+  <title>Al Amin Onik | Portfolio</title>
+  <link rel="icon" type="image/png" href="assets/OnikLogo.png" />
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ======= LOADER ======= -->
+  <div id="loader">
+    <div class="loader-inner">
+      <img src="assets/OnikLogo.png" alt="Logo" class="loader-logo" />
+      <div class="loader-bar"><div class="loader-progress"></div></div>
+    </div>
+  </div>
+
+  <!-- ======= NAVBAR ======= -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <img src="assets/HeaderLogo.png" alt="Onik Logo" />
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about"      class="nav-link">About</a></li>
+        <li><a href="#skills"     class="nav-link">Skills</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#projects"   class="nav-link">Projects</a></li>
+        <li><a href="#contact"    class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="https://onikcreation.github.io/fifa-world-cup-2026/index.html" target="_blank" rel="noopener" class="nav-fifa-btn">
+          <img src="assets/FifaWC26Logo.png" alt="FIFA WC26" class="fifa-btn-logo" />
+          <span>FIFA World Cup 2026</span>
+        </a>
+        <button type="button" class="download-vcf-btn" onclick="downloadVCard()" title="Download vCard">
+          <i class="fa-solid fa-user-plus"></i>
+        </button>
+        <button type="button" class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======= HERO ======= -->
+  <section id="hero" class="hero-section">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-glow glow-1"></div>
+      <div class="hero-glow glow-2"></div>
+    </div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span> Open to collaboration
+        </div>
+
+        <div class="hero-photo-wrap">
+          <img src="assets/profile.jpg" alt="Al Amin Onik" class="hero-photo"
+               onerror="this.onerror=null;this.src='assets/profile.svg'" />
+        </div>
+
+        <h1 class="hero-name">Al Amin Onik</h1>
+
+        <div class="hero-title-wrap">
+          <span class="hero-title">ERP &amp; Web Management</span>
+        </div>
+
+        <p class="hero-bio">
+          Assistant Manager<br>
+          at <strong>Udvash-Unmesh-Uttoron</strong><br>
+          Specializing in ERP systems, Web management and Digital workflow.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">
+            <i class="fa-solid fa-eye"></i> View Work
+          </a>
+          <a href="#contact" class="btn btn-outline">
+            <i class="fa-solid fa-envelope"></i> Contact Me
+          </a>
+        </div>
+
+        <div class="hero-socials">
+          <a href="https://www.facebook.com/onik786" target="_blank" rel="noopener" aria-label="Facebook" class="facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="https://wa.me/8801313368630" target="_blank" rel="noopener" aria-label="WhatsApp" class="whatsapp">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+          <a href="https://teams.live.com/l/invite/FEAz8-UecUYGnyGOQ?v=g1" target="_blank" rel="noopener" aria-label="Teams" class="teams">
+            <img src="assets/teams.png" alt="Teams" />
+          </a>
+          <a href="https://github.com/onikcreation" target="_blank" rel="noopener" aria-label="GitHub" class="github">
+            <i class="fa-brands fa-github"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <a href="#about" class="scroll-down" aria-label="Scroll to About">
+      <i class="fa-solid fa-chevron-down"></i>
+    </a>
+  </section>
+
+  <!-- ======= ABOUT ======= -->
+  <section id="about" class="section about-section">
+    <div class="container">
+      <div class="section-header" data-aos>
+        <span class="section-tag">Who I Am</span>
+        <h2 class="section-title">About Me</h2>
+      </div>
+
+      <div class="about-grid" data-aos>
+        <div class="about-image-wrap">
+          <img src="assets/profile.jpg" alt="Al Amin Onik"
+               onerror="this.onerror=null;this.src='assets/profile.svg'" />
+          <div class="about-image-frame"></div>
+        </div>
+
+        <div class="about-content">
+          <p class="about-text">
+            I'm a tech-focused professional with hands-on experience in <strong>ERP systems</strong> and
+            <strong>web management</strong>. Currently working as Assistant Manager at
+            Udvash-Unmesh-Uttoron, one of Bangladesh's leading educational organizations.
+          </p>
+          <p class="about-text">
+            My work involves managing enterprise software, overseeing web operations, and building
+            digital solutions that streamline organizational workflows. I enjoy bridging the gap
+            between technology and business needs.
+          </p>
+
+          <div class="about-details">
+            <div class="about-detail-item">
+              <i class="fa-solid fa-briefcase"></i>
+              <div>
+                <span class="detail-label">Current Role</span>
+                <span class="detail-value">Asst. Manager ERP &amp; Web</span>
+              </div>
+            </div>
+            <div class="about-detail-item">
+              <i class="fa-solid fa-building"></i>
+              <div>
+                <span class="detail-label">Organization</span>
+                <span class="detail-value">Udvash-Unmesh-Uttoron</span>
+              </div>
+            </div>
+            <div class="about-detail-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <div>
+                <span class="detail-label">Location</span>
+                <span class="detail-value">Dhaka, Bangladesh</span>
+              </div>
+            </div>
+            <div class="about-detail-item">
+              <i class="fa-regular fa-envelope"></i>
+              <div>
+                <span class="detail-label">Email</span>
+                <span class="detail-value">anik@udvash.com</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-stats">
+            <div class="stat-item">
+              <span class="stat-num">12+</span>
+              <span class="stat-label">Years Exp.</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">20+</span>
+              <span class="stat-label">Projects</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">4+</span>
+              <span class="stat-label">Organizations</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= SKILLS ======= -->
+  <section id="skills" class="section skills-section">
+    <div class="container">
+      <div class="section-header" data-aos>
+        <span class="section-tag">What I Do</span>
+        <h2 class="section-title">Skills &amp; Expertise</h2>
+      </div>
+
+      <div class="skills-grid" data-aos>
+
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fa-solid fa-server"></i></div>
+          <h3>ERP Systems</h3>
+          <p>Enterprise Resource Planning implementation, management, and support for large-scale organizations.</p>
+          <div class="skill-tags">
+            <span>ERP Management</span>
+            <span>Database</span>
+            <span>System Admin</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fa-solid fa-globe"></i></div>
+          <h3>Web Management</h3>
+          <p>Website management, content management systems, and web operations for institutional platforms.</p>
+          <div class="skill-tags">
+            <span>CMS</span>
+            <span>WordPress</span>
+            <span>Web Ops</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
+          <h3>Web Development</h3>
+          <p>Building clean, responsive web interfaces with modern HTML, CSS, and JavaScript.</p>
+          <div class="skill-tags">
+            <span>HTML / CSS</span>
+            <span>JavaScript</span>
+            <span>Responsive</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fa-solid fa-users-gear"></i></div>
+          <h3>Team Management</h3>
+          <p>Leading technical teams, coordinating cross-functional projects, and managing IT operations.</p>
+          <div class="skill-tags">
+            <span>Leadership</span>
+            <span>Coordination</span>
+            <span>Operations</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <h3>Digital Strategy</h3>
+          <p>Planning and executing digital transformation initiatives and process optimization.</p>
+          <div class="skill-tags">
+            <span>Process Design</span>
+            <span>Analytics</span>
+            <span>Automation</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3>IT Administration</h3>
+          <p>System administration, security management, and infrastructure maintenance.</p>
+          <div class="skill-tags">
+            <span>Security</span>
+            <span>Networking</span>
+            <span>Maintenance</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= EXPERIENCE ======= -->
+  <section id="experience" class="section experience-section">
+    <div class="container">
+      <div class="section-header" data-aos>
+        <span class="section-tag">Career</span>
+        <h2 class="section-title">Work Experience</h2>
+      </div>
+
+      <div class="timeline" data-aos>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">Assistant Manager – ERP &amp; Web Management</h3>
+                <p class="timeline-company">
+                  <i class="fa-solid fa-building"></i> Udvash-Unmesh-Uttoron
+                </p>
+              </div>
+              <span class="timeline-period">2022 — Present</span>
+            </div>
+            <ul class="timeline-duties">
+              <li>Managing ERP systems and overseeing institutional web operations</li>
+              <li>Coordinating technical teams for system maintenance and upgrades</li>
+              <li>Developing and maintaining the organization's web platforms</li>
+              <li>Streamlining digital workflows and internal processes</li>
+            </ul>
+            <div class="timeline-tags">
+              <span>ERP</span><span>Web Management</span><span>Team Leadership</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- এখানে আরও experience যোগ করুন -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card placeholder-card">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">Previous Role</h3>
+                <p class="timeline-company">
+                  <i class="fa-solid fa-building"></i> Company Name
+                </p>
+              </div>
+              <span class="timeline-period">Year — Year</span>
+            </div>
+            <ul class="timeline-duties">
+              <li>Responsibility description</li>
+              <li>Key achievement or task</li>
+            </ul>
+            <div class="timeline-tags">
+              <span>Skill</span><span>Tool</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= PROJECTS ======= -->
+  <section id="projects" class="section projects-section">
+    <div class="container">
+      <div class="section-header" data-aos>
+        <span class="section-tag">My Work</span>
+        <h2 class="section-title">Projects</h2>
+      </div>
+
+      <div class="projects-grid" data-aos>
+
+        <div class="project-card">
+          <div class="project-icon"><i class="fa-solid fa-futbol"></i></div>
+          <div class="project-content">
+            <h3>FIFA World Cup 2026</h3>
+            <p>FIFA World Cup 2026 সম্পর্কিত একটি ওয়েব প্রজেক্ট — গ্রুপ, ম্যাচ, দল ও টুর্নামেন্টের তথ্য সুন্দরভাবে উপস্থাপন করা হয়েছে।</p>
+            <div class="project-tags">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/onikcreation/fifa-world-cup-2026" target="_blank" rel="noopener" class="project-link"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="https://onikcreation.github.io/fifa-world-cup-2026/index.html" target="_blank" rel="noopener" class="project-link primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon"><i class="fa-solid fa-id-card"></i></div>
+          <div class="project-content">
+            <h3>Digital Business Card</h3>
+            <p>A mobile-first digital vCard with contact info, social links, and .vcf download. Built with pure HTML/CSS/JS and hosted on GitHub Pages.</p>
+            <div class="project-tags">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="https://onikcreation.github.io/Digital_V_Card/" target="_blank" rel="noopener" class="project-link primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon"><i class="fa-solid fa-train"></i></div>
+          <div class="project-content">
+            <h3>BD Train Ticket Booker</h3>
+            <p>Bangladesh Railway-এর e-ticketing সাইটে স্বয়ংক্রিয়ভাবে টিকেট বুক করার Chrome Extension। Two-phase seat selection logic, auto form fill, এবং real-time availability check সহ।</p>
+            <div class="project-tags">
+              <span>JavaScript</span><span>Chrome Extension</span><span>Automation</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link disabled"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="#" class="project-link disabled"><i class="fa-solid fa-puzzle-piece"></i> Extension</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div class="project-content">
+            <h3>DU Result Scraper</h3>
+            <p>ঢাকা বিশ্ববিদ্যালয়ের ভর্তি পরীক্ষার ফলাফল স্বয়ংক্রিয়ভাবে অনুসন্ধান ও প্রদর্শনের টুল। Selenium WebDriver ও tkinter GUI দিয়ে তৈরি, একাধিক unit সাপোর্ট করে।</p>
+            <div class="project-tags">
+              <span>Python</span><span>Selenium</span><span>tkinter</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="#" class="project-link disabled"><i class="fa-solid fa-desktop"></i> Desktop App</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon"><i class="fa-solid fa-dice"></i></div>
+          <div class="project-content">
+            <h3>Random Number Picker</h3>
+            <p>Animated slot-machine effect সহ স্টুডেন্ট র‍্যান্ডমলি সিলেক্ট করার desktop application। BCS spin mode, fullscreen responsive layout, এবং customtkinter দিয়ে তৈরি।</p>
+            <div class="project-tags">
+              <span>Python</span><span>customtkinter</span><span>GUI</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="#" class="project-link disabled"><i class="fa-solid fa-desktop"></i> Desktop App</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon"><i class="fa-solid fa-file-excel"></i></div>
+          <div class="project-content">
+            <h3>Excel Automation Tools</h3>
+            <p>pandas দিয়ে তৈরি Excel automation toolkit। মোবাইল নম্বর ম্যাচিং, HSC ডেটা district-wise aggregation, এবং merged cell থেকে branch-row-count extraction সহ।</p>
+            <div class="project-tags">
+              <span>Python</span><span>pandas</span><span>openpyxl</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link disabled"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="#" class="project-link disabled"><i class="fa-solid fa-puzzle-piece"></i> Extension</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="projects-more">And More.....</p>
+
+    </div>
+  </section>
+
+  <!-- ======= CONTACT ======= -->
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <div class="section-header" data-aos>
+        <span class="section-tag">Get In Touch</span>
+        <h2 class="section-title">Contact</h2>
+      </div>
+
+      <div class="contact-body" data-aos>
+        <p class="contact-intro">
+          Feel free to reach out for professional inquiries, collaborations, or just a chat!
+        </p>
+
+        <div class="contact-items">
+          <a href="tel:+8801313368630" class="contact-card">
+            <div class="contact-card-icon"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <span class="contact-card-label">Mobile (Office)</span>
+              <span class="contact-card-value">+8801313368630</span>
+            </div>
+          </a>
+          <a href="tel:+8801675547466" class="contact-card">
+            <div class="contact-card-icon"><i class="fa-solid fa-phone-volume"></i></div>
+            <div>
+              <span class="contact-card-label">Mobile (Personal)</span>
+              <span class="contact-card-value">+8801675547466</span>
+            </div>
+          </a>
+          <a href="mailto:anik@udvash.com" class="contact-card">
+            <div class="contact-card-icon"><i class="fa-regular fa-envelope"></i></div>
+            <div>
+              <span class="contact-card-label">Email</span>
+              <span class="contact-card-value">anik@udvash.com</span>
+            </div>
+          </a>
+          <a href="https://www.udvash.com" target="_blank" rel="noopener" class="contact-card">
+            <div class="contact-card-icon"><i class="fa-solid fa-globe"></i></div>
+            <div>
+              <span class="contact-card-label">Website</span>
+              <span class="contact-card-value">www.udvash.com</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="social-links-block">
+          <h3 class="social-heading">Find me on</h3>
+          <div class="social-row">
+            <a href="https://www.facebook.com/onik786"    class="social-icon facebook"  target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://m.me/onik786"                class="social-icon messenger" target="_blank" rel="noopener" aria-label="Messenger"><i class="fa-brands fa-facebook-messenger"></i></a>
+            <a href="https://wa.me/8801313368630"          class="social-icon whatsapp"  target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://teams.live.com/l/invite/FEAz8-UecUYGnyGOQ?v=g1" class="social-icon teams" target="_blank" rel="noopener" aria-label="Teams"><img src="assets/teams.png" alt="Teams" /></a>
+            <a href="https://www.instagram.com/imonik786" class="social-icon instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://x.com/"                      class="social-icon twitter"   target="_blank" rel="noopener" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://www.youtube.com/@MillennialOnik" class="social-icon youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/in/onik786/"            class="social-icon linkedin"  target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://github.com/onikcreation"                 class="social-icon github"    target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.tiktok.com/@onik.786"             class="social-icon tiktok"    target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="mailto:anik@udvash.com"              class="social-icon gmail"                     aria-label="Gmail"><i class="fa-brands fa-google"></i></a>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary vcard-download-btn" onclick="downloadVCard()">
+          <i class="fa-solid fa-user-plus"></i> Download vCard
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= FOOTER ======= -->
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> Al Amin Onik &nbsp;·&nbsp; Designed &amp; Built with passion</p>
+    </div>
+  </footer>
+
+  <!-- ======= THEME SWITCHER ======= -->
+  <div class="theme-switcher" id="themeSwitcher">
+    <button type="button" class="theme-toggle-btn" id="themeToggleBtn" aria-label="Change theme">
+      <i class="fa-solid fa-palette"></i>
+    </button>
+    <div class="theme-panel" id="themePanel">
+      <span class="theme-panel-title">Theme</span>
+      <div class="theme-opts">
+        <button type="button" class="theme-opt active" data-theme="glass">
+          <span class="t-swatch sw-glass"></span> Glass
+        </button>
+        <button type="button" class="theme-opt" data-theme="dark">
+          <span class="t-swatch sw-dark"></span> Dark
+        </button>
+        <button type="button" class="theme-opt" data-theme="light">
+          <span class="t-swatch sw-light"></span> Light
+        </button>
+        <button type="button" class="theme-opt" data-theme="purple">
+          <span class="t-swatch sw-purple"></span> Purple
+        </button>
+        <button type="button" class="theme-opt" data-theme="cyber">
+          <span class="t-swatch sw-cyber"></span> Cyber
+        </button>
+      </div>
+
+      <!-- Color Palette Customizer -->
+      <div class="cp-section">
+        <span class="theme-panel-title">Palette</span>
+        <div class="cp-row">
+          <label class="cp-item" title="Primary accent color">
+            <input type="color" id="cpAccent" />
+            <span>Primary</span>
+          </label>
+          <label class="cp-item" title="Secondary accent color">
+            <input type="color" id="cpAccent2" />
+            <span>Secondary</span>
+          </label>
+          <label class="cp-item" title="Background color">
+            <input type="color" id="cpBg" />
+            <span>BG</span>
+          </label>
+        </div>
+        <button type="button" id="cpReset" class="cp-reset-btn">↺ Reset Colors</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
