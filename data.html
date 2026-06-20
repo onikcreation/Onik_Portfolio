@@ -505,7 +505,7 @@
   let searchQ      = '';
 
   // ── SESSION TIMEOUT (30 min) ──────────────
-  const SESSION_MS = 30 * 60 * 1000;
+  const SESSION_MS = 5 * 60 * 1000;
   let lastActivity = Date.now();
   let sessionTimer;
   let warned5      = false;
@@ -529,7 +529,7 @@
       const mins = Math.ceil(remaining / 60000);
       document.getElementById('sessionBadge').textContent = `⏱ ${mins}m`;
 
-      if (remaining <= 5 * 60 * 1000 && !warned5) {
+      if (remaining <= 1 * 60 * 1000 && !warned5) {
         warned5 = true;
         showToast(`⚠️ Session expires in ${mins} min`, 'warning');
       }
