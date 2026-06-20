@@ -134,40 +134,7 @@
     }
     .btn-add:hover { opacity: 0.88; }
 
-    .btn-search-toggle {
-      padding: 7px 12px;
-      background: var(--glass); border: 1px solid var(--border);
-      border-radius: 8px; color: var(--muted);
-      font-size: 0.88rem; font-family: inherit; cursor: pointer;
-      transition: all 0.2s; display: flex; align-items: center; gap: 5px;
-    }
-    .btn-search-toggle:hover,
-    .btn-search-toggle.active { color: var(--accent); border-color: var(--accent); }
-
-    .search-wrap {
-      display: none; align-items: center; gap: 6px;
-    }
-    .search-wrap.open { display: flex; }
-
-    .search-input {
-      padding: 7px 12px;
-      background: var(--glass); border: 1px solid var(--border);
-      border-radius: 8px; color: var(--text);
-      font-size: 0.82rem; font-family: inherit;
-      outline: none; width: 200px;
-      transition: border-color 0.2s;
-    }
-    .search-input:focus { border-color: var(--accent); }
-    .search-input::placeholder { color: var(--muted); }
-
-    .btn-search-clear {
-      padding: 4px 7px; background: transparent;
-      border: none; color: var(--muted); cursor: pointer;
-      font-size: 0.9rem; line-height: 1;
-    }
-    .btn-search-clear:hover { color: var(--text); }
-
-    .tag-filter-row {
+.tag-filter-row {
       display: none; flex-wrap: wrap; gap: 6px;
       margin-bottom: 10px;
     }
@@ -404,11 +371,6 @@
   <main class="main">
     <div class="toolbar">
       <button type="button" class="btn-add" id="addRowBtn">＋ Add Row</button>
-      <button type="button" class="btn-search-toggle" id="searchToggleBtn">🔍 Search</button>
-      <div class="search-wrap" id="searchWrap">
-        <input type="search" class="search-input" id="searchInput" placeholder="Search…" />
-        <button type="button" class="btn-search-clear" id="searchClearBtn" title="Clear">✕</button>
-      </div>
       <span class="row-count" id="rowCount"></span>
     </div>
     <div class="tag-filter-row" id="tagFilterRow"></div>
@@ -557,7 +519,6 @@
   let editingId    = null;
   let deletingId   = null;
   let unsubs       = {};
-  let searchQ      = '';
 
   // ── AUTH GATE ─────────────────────────────
   onAuthStateChanged(auth, user => {
@@ -594,9 +555,7 @@
   function switchTab(tab) {
     currentTab = tab;
     sortState  = { col: null, dir: 'asc' };
-    searchQ    = ''; activeTag = null;
-    document.getElementById('searchInput').value = '';
-    closeSearch();
+    activeTag  = null;
     document.querySelectorAll('.tab-btn').forEach(b =>
       b.classList.toggle('active', b.dataset.tab === tab)
     );
@@ -636,13 +595,6 @@
   // ── RENDER TABLE ──────────────────────────
   function getDisplayData() {
     let data = [...tabData[currentTab]];
-
-    if (searchQ) {
-      const q = searchQ.toLowerCase();
-      data = data.filter(row =>
-        Object.values(row).some(v => String(v ?? '').toLowerCase().includes(q))
-      );
-    }
 
     if (activeTag) {
       data = data.filter(row => {
@@ -950,14 +902,6 @@
     window.location.replace('login.html');
   }
 
-  // ── SEARCH HELPERS ────────────────────────
-  function closeSearch() {
-    searchQ = ''; document.getElementById('searchInput').value = '';
-    document.getElementById('searchWrap').classList.remove('open');
-    document.getElementById('searchToggleBtn').classList.remove('active');
-    renderTable();
-  }
-
   // ── MODAL HELPERS ─────────────────────────
   function showModal(id) { document.getElementById(id).classList.add('open'); }
   function hideModal(id) { document.getElementById(id).classList.remove('open'); }
@@ -1000,28 +944,6 @@
     // Add row
     document.getElementById('addRowBtn').addEventListener('click', openAddModal);
 
-    // Search toggle
-    document.getElementById('searchToggleBtn').addEventListener('click', () => {
-      const wrap = document.getElementById('searchWrap');
-      const btn  = document.getElementById('searchToggleBtn');
-      const isOpen = wrap.classList.toggle('open');
-      btn.classList.toggle('active', isOpen);
-      if (isOpen) document.getElementById('searchInput').focus();
-      else { searchQ = ''; document.getElementById('searchInput').value = ''; renderTable(); }
-    });
-
-    document.getElementById('searchClearBtn').addEventListener('click', () => {
-      searchQ = ''; document.getElementById('searchInput').value = '';
-      renderTable(); document.getElementById('searchInput').focus();
-    });
-
-    document.getElementById('searchInput').addEventListener('input', e => {
-      searchQ = e.target.value; renderTable();
-    });
-
-    document.getElementById('searchInput').addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeSearch();
-    });
 
     // Re-auth modal
     document.getElementById('reauthConfirm').addEventListener('click', confirmReauth);
