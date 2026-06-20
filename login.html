@@ -178,7 +178,7 @@
 
   <script type="module">
     import { initializeApp }              from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged }
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, browserSessionPersistence, setPersistence }
                                           from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 
     const firebaseConfig = {
@@ -223,6 +223,7 @@
       loginBtn.textContent = 'Logging in…';
 
       try {
+        await setPersistence(auth, browserSessionPersistence);
         await signInWithEmailAndPassword(auth, emailEl.value.trim(), passEl.value);
         // onAuthStateChanged handles redirect
       } catch (err) {

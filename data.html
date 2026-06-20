@@ -434,7 +434,6 @@
   import { initializeApp }                    from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
   import {
     getAuth, onAuthStateChanged, signOut,
-    browserSessionPersistence, setPersistence,
     EmailAuthProvider, reauthenticateWithCredential
   }                                           from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
   import {
@@ -457,9 +456,6 @@
   const app  = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const db   = getFirestore(app);
-
-  // ব্রাউজার বন্ধ হলে session শেষ হয়ে যাবে
-  setPersistence(auth, browserSessionPersistence);
 
   // ── TAB / COLUMN DEFINITIONS ─────────────
   const TABS = {
