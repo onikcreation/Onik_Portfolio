@@ -526,14 +526,16 @@
         return;
       }
 
-      const mins = Math.ceil(remaining / 60000);
-      document.getElementById('sessionBadge').textContent = `⏱ ${mins}m`;
+      const totalSecs = Math.ceil(remaining / 1000);
+      const mm = String(Math.floor(totalSecs / 60)).padStart(2, '0');
+      const ss = String(totalSecs % 60).padStart(2, '0');
+      document.getElementById('sessionBadge').textContent = `⏱ ${mm}:${ss}`;
 
       if (remaining <= 1 * 60 * 1000 && !warned5) {
         warned5 = true;
-        showToast(`⚠️ Session expires in ${mins} min`, 'warning');
+        showToast('⚠️ Session expires in 1 minute', 'warning');
       }
-    }, 30_000);
+    }, 1000);
   }
 
   // ── AUTH GATE ─────────────────────────────
