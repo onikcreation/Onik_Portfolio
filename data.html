@@ -470,9 +470,9 @@
       label: 'Record', emoji: '📋',
       cols: [
         { key: 'title',       label: 'Title',       type: 'text',     required: true, span: 2 },
+        { key: 'description', label: 'Description', type: 'textarea', span: 2 },
         { key: 'note',        label: 'Note',        type: 'textarea', span: 2 },
         { key: 'url',         label: 'URL',         type: 'url',      span: 2 },
-        { key: 'description', label: 'Description', type: 'textarea', span: 2 },
         { key: 'category',    label: 'Category',    type: 'text' },
         { key: 'updatedAt',   label: 'Updated',     type: 'ts',       readonly: true }
       ]
@@ -669,8 +669,19 @@
         if (col.type === 'ts' && val?.toDate) {
           td.textContent = fmtDate(val.toDate());
           td.style.color = 'var(--muted)'; td.style.fontSize = '0.75rem';
-        } else if (col.type === 'url' && val) {
-          td.innerHTML = `<a href="${esc(val)}" target="_blank" rel="noopener" class="link-cell">${esc(val)}</a>`;
+        } else if (col.type === 'url') {
+          if (val) {
+            const copyBtn = document.createElement('button');
+            copyBtn.className = 'btn-copy'; copyBtn.textContent = '📋'; copyBtn.title = 'Copy';
+            copyBtn.onclick = () => navigator.clipboard.writeText(val).then(() => showToast('Copied!', 'success'));
+            const link = document.createElement('a');
+            link.href = esc(val); link.target = '_blank'; link.rel = 'noopener';
+            link.className = 'link-cell'; link.textContent = val;
+            const wrap2 = document.createElement('div');
+            wrap2.style.cssText = 'display:flex;align-items:center;gap:6px;';
+            wrap2.appendChild(copyBtn); wrap2.appendChild(link);
+            td.appendChild(wrap2);
+          }
         } else if (col.key === 'type') {
           td.innerHTML = `<span class="badge badge-${val}">${val ?? ''}</span>`;
         } else if (col.key === 'amount' && val != null) {
@@ -679,19 +690,18 @@
           td.style.color = row.type === 'income' ? 'var(--income)' : 'var(--expense)';
         } else if (col.type === 'textarea') {
           const fullVal = val ?? '';
-          const copyBtn = document.createElement('button');
-          copyBtn.className = 'btn-copy'; copyBtn.textContent = '📋';
-          copyBtn.title = 'Copy';
-          copyBtn.onclick = () => {
-            navigator.clipboard.writeText(fullVal).then(() => showToast('Copied!', 'success'));
-          };
-          const span = document.createElement('span');
-          span.style.cssText = 'white-space:pre-wrap;word-break:break-word;';
-          span.textContent = fullVal;
-          const wrap2 = document.createElement('div');
-          wrap2.style.cssText = 'display:flex;align-items:flex-start;gap:8px;';
-          wrap2.appendChild(copyBtn); wrap2.appendChild(span);
-          td.appendChild(wrap2);
+          if (fullVal) {
+            const copyBtn = document.createElement('button');
+            copyBtn.className = 'btn-copy'; copyBtn.textContent = '📋'; copyBtn.title = 'Copy';
+            copyBtn.onclick = () => navigator.clipboard.writeText(fullVal).then(() => showToast('Copied!', 'success'));
+            const span = document.createElement('span');
+            span.style.cssText = 'white-space:pre-wrap;word-break:break-word;';
+            span.textContent = fullVal;
+            const wrap2 = document.createElement('div');
+            wrap2.style.cssText = 'display:flex;align-items:flex-start;gap:8px;';
+            wrap2.appendChild(copyBtn); wrap2.appendChild(span);
+            td.appendChild(wrap2);
+          }
         } else {
           td.textContent = val ?? '';
         }
