@@ -84,11 +84,7 @@
     .btn-edit:hover { border-color: var(--accent); color: var(--accent); }
     .btn-edit.active { background: rgba(56,189,248,0.15); color: var(--accent); border-color: var(--accent); }
 
-    .btn-migrate { background: rgba(167,139,250,0.12); color: #c4b5fd; border: 1px solid rgba(167,139,250,0.3); display: none; }
-    .btn-migrate:hover { background: rgba(167,139,250,0.2); }
-    .btn-migrate.visible { display: inline-flex; }
-
-    .btn-logout { background: rgba(239,68,68,0.12); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
+.btn-logout { background: rgba(239,68,68,0.12); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
     .btn-logout:hover { background: rgba(239,68,68,0.2); }
 
     /* ── TABS ────────────────────────────────── */
@@ -358,7 +354,6 @@
       </div>
     </div>
     <div class="hdr-right">
-      <button class="btn-hdr btn-migrate" id="migrateBtn" title="Migrate old data to Records">⬆ Migrate</button>
       <button class="btn-hdr btn-edit" id="editModeBtn">✏️ Edit Mode</button>
       <button class="btn-hdr btn-logout" id="logoutBtn">⏏ Log Out</button>
     </div>
@@ -431,7 +426,7 @@
   }                                           from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
   import {
     getFirestore, collection, doc,
-    onSnapshot, addDoc, updateDoc, deleteDoc, getDocs,
+    onSnapshot, addDoc, updateDoc, deleteDoc,
     serverTimestamp
   }                                           from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 
@@ -502,7 +497,6 @@
       isEditMode = true;
       document.getElementById('editModeBtn').textContent = '👁 View Mode';
       document.getElementById('editModeBtn').classList.add('active');
-      document.getElementById('migrateBtn').classList.add('visible');
     }
   });
 
@@ -636,9 +630,9 @@
       hRow.appendChild(th);
     });
 
-    if (isEditMode) {
+    {
       const th = document.createElement('th');
-      th.textContent = 'Actions'; th.className = 'col-actions no-sort';
+      th.textContent = ''; th.className = 'col-actions no-sort';
       hRow.appendChild(th);
     }
 
@@ -683,15 +677,20 @@
         }
       });
 
-      if (isEditMode) {
+      {
         const td = tr.insertCell();
         td.className = 'col-actions';
-        td.innerHTML = `
-          <button class="btn-row btn-row-edit"   title="Edit">✏️</button>
-          <button class="btn-row btn-row-delete" title="Delete">🗑️</button>
-        `;
-        td.querySelector('.btn-row-edit').onclick   = () => openEditModal(row.id);
-        td.querySelector('.btn-row-delete').onclick = () => openDeleteModal(row.id);
+        if (isEditMode) {
+          td.innerHTML = `
+            <button class="btn-row btn-row-edit"   title="Edit">✏️</button>
+            <button class="btn-row btn-row-delete" title="Delete">🗑️</button>
+          `;
+          td.querySelector('.btn-row-edit').onclick   = () => openEditModal(row.id);
+          td.querySelector('.btn-row-delete').onclick = () => openDeleteModal(row.id);
+        } else {
+          td.innerHTML = `<button class="btn-row btn-row-delete" title="Delete">🗑️</button>`;
+          td.querySelector('.btn-row-delete').onclick = () => openDeleteModal(row.id);
+        }
       }
     });
 
@@ -726,7 +725,6 @@
     sessionStorage.setItem('editMode', '1');
     document.getElementById('editModeBtn').textContent = '👁 View Mode';
     document.getElementById('editModeBtn').classList.add('active');
-    document.getElementById('migrateBtn').classList.add('visible');
     renderTable();
     showToast('Edit Mode enabled', 'success');
   }
@@ -736,7 +734,6 @@
     sessionStorage.removeItem('editMode');
     document.getElementById('editModeBtn').textContent = '✏️ Edit Mode';
     document.getElementById('editModeBtn').classList.remove('active');
-    document.getElementById('migrateBtn').classList.remove('visible');
     renderTable();
     showToast('View Mode', 'info');
   }
@@ -849,80 +846,6 @@
     }
   }
 
-  // ── MIGRATE OLD DATA ─────────────────────
-  async function migrateOldData() {
-    const btn = document.getElementById('migrateBtn');
-    btn.disabled = true; btn.textContent = '⏳ Migrating…';
-
-    try {
-      const uid       = currentUser.uid;
-      const recColRef = collection(db, 'users', uid, 'records');
-      let   count     = 0;
-
-      // notes → records (content → note, tags → category)
-      const notesSnap = await getDocs(collection(db, 'users', uid, 'notes'));
-      for (const d of notesSnap.docs) {
-        const n = d.data();
-        await addDoc(recColRef, {
-          title:       n.title       ?? '',
-          note:        n.content     ?? '',
-          url:         '',
-          description: '',
-          category:    n.tags        ?? '',
-          createdAt:   n.createdAt   ?? serverTimestamp(),
-          updatedAt:   n.updatedAt   ?? serverTimestamp(),
-        });
-        count++;
-      }
-
-      // links → records
-      const linksSnap = await getDocs(collection(db, 'users', uid, 'links'));
-      for (const d of linksSnap.docs) {
-        const l = d.data();
-        await addDoc(recColRef, {
-          title:       l.title       ?? '',
-          note:        '',
-          url:         l.url         ?? '',
-          description: l.description ?? '',
-          category:    l.category    ?? '',
-          createdAt:   l.createdAt   ?? serverTimestamp(),
-          updatedAt:   l.createdAt   ?? serverTimestamp(),
-        });
-        count++;
-      }
-
-      // info → records (key → title, value → note)
-      const infoSnap = await getDocs(collection(db, 'users', uid, 'info'));
-      for (const d of infoSnap.docs) {
-        const i = d.data();
-        await addDoc(recColRef, {
-          title:       i.key         ?? '',
-          note:        i.value       ?? '',
-          url:         '',
-          description: i.note        ?? '',
-          category:    i.category    ?? '',
-          createdAt:   i.createdAt   ?? serverTimestamp(),
-          updatedAt:   i.createdAt   ?? serverTimestamp(),
-        });
-        count++;
-      }
-
-      btn.textContent = `✓ Done (${count})`;
-      showToast(`✓ ${count} records migrated successfully`, 'success');
-
-      // Fresh snapshot নিয়ে data দেখাও
-      subscribeTab('records');
-
-      // বাটন ৫ সেকেন্ড পর লুকিয়ে ফেলো
-      setTimeout(() => { btn.style.display = 'none'; }, 5000);
-
-    } catch (err) {
-      console.error(err);
-      showToast('Migration failed: ' + err.message, 'error');
-      btn.disabled = false; btn.textContent = '⬆ Migrate';
-    }
-  }
-
   // ── LOGOUT ────────────────────────────────
   async function doLogout() {
     Object.values(unsubs).forEach(fn => fn?.());
@@ -966,9 +889,6 @@
     // Edit Mode
     document.getElementById('editModeBtn').addEventListener('click', toggleEditMode);
 
-    // Migrate
-    document.getElementById('migrateBtn').addEventListener('click', migrateOldData);
-
     // Logout
     document.getElementById('logoutBtn').addEventListener('click', () => doLogout());
 
@@ -992,7 +912,7 @@
       if (e.target === e.currentTarget) { hideModal('deleteModal'); deletingId = null; }
     });
 
-    switchTab('notes');
+    switchTab('records');
   }
 </script>
 </body>
