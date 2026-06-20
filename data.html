@@ -515,6 +515,13 @@
     document.getElementById('app').style.display = 'block';
     subscribeAll();
     setupUI();
+    // Reload হলে Edit Mode restore করো
+    if (sessionStorage.getItem('editMode') === '1') {
+      isEditMode = true;
+      document.getElementById('editModeBtn').textContent = '👁 View Mode';
+      document.getElementById('editModeBtn').classList.add('active');
+      document.getElementById('migrateBtn').classList.add('visible');
+    }
   });
 
   // ── FIRESTORE SUBSCRIPTIONS ───────────────
@@ -748,6 +755,7 @@
       await reauthenticateWithCredential(currentUser, cred);
       hideModal('reauthModal');
       isEditMode = true;
+      sessionStorage.setItem('editMode', '1');
       document.getElementById('editModeBtn').textContent = '👁 View Mode';
       document.getElementById('editModeBtn').classList.add('active');
       document.getElementById('migrateBtn').classList.add('visible');
@@ -762,6 +770,7 @@
 
   function exitEdit() {
     isEditMode = false;
+    sessionStorage.removeItem('editMode');
     document.getElementById('editModeBtn').textContent = '✏️ Edit Mode';
     document.getElementById('editModeBtn').classList.remove('active');
     document.getElementById('migrateBtn').classList.remove('visible');
@@ -937,6 +946,9 @@
 
       btn.textContent = `✓ Done (${count})`;
       showToast(`✓ ${count} records migrated successfully`, 'success');
+
+      // Fresh snapshot নিয়ে data দেখাও
+      subscribeTab('records');
 
       // বাটন ৫ সেকেন্ড পর লুকিয়ে ফেলো
       setTimeout(() => { btn.style.display = 'none'; }, 5000);
