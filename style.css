@@ -209,33 +209,6 @@ a { text-decoration: none; color: inherit; }
   .fifa-btn-logo { width: 30px; height: 30px; }
 }
 
-.nav-mydata-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  height: 38px;
-  padding: 0 14px;
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--text);
-  border-radius: 8px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  white-space: nowrap;
-  border: 1px solid var(--bg-border);
-  transition: all var(--transition);
-}
-
-.nav-mydata-btn:hover {
-  background: var(--bg-elevated);
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-@media (max-width: 640px) {
-  .nav-mydata-btn span { display: none; }
-  .nav-mydata-btn { width: 38px; padding: 0; justify-content: center; }
-}
-
 .download-vcf-btn {
   display: inline-flex;
   align-items: center;
@@ -1557,6 +1530,35 @@ html[data-theme="cyber"] .navbar {
 html[data-theme="cyber"] .about-section,
 html[data-theme="cyber"] .experience-section,
 html[data-theme="cyber"] .contact-section { background: #08080e; }
+
+/* =============================================
+   MY DATA FLOATING BUTTON
+   ============================================= */
+.mydata-floater {
+  position: fixed;
+  bottom: 32px;
+  left: 24px;
+  z-index: 8000;
+}
+
+.mydata-float-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px var(--accent-glow);
+  transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+  text-decoration: none;
+}
+
+.mydata-float-btn:hover { transform: scale(1.1); }
 
 /* =============================================
    THEME SWITCHER
