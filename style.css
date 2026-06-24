@@ -462,6 +462,20 @@ a { text-decoration: none; color: inherit; }
 
 .hero-bio strong { color: var(--text); }
 
+.hero-quote {
+  margin: 0 auto 28px;
+  max-width: 500px;
+  padding: 14px 18px 14px 20px;
+  border-left: 3px solid var(--accent);
+  background: rgba(155, 89, 232, 0.06);
+  border-radius: 0 10px 10px 0;
+  font-size: 0.86rem;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.8;
+  text-align: left;
+}
+
 .hero-actions {
   display: flex;
   gap: 12px;
